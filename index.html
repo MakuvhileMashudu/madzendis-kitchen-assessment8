@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Madzendi's Kitchen</title>
+
+  <!-- Favicon: shown in the browser tab on every page in the project -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+  <!-- Shared project stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ===== HEADER + NAVIGATION =====
+     Wrapped in a <header> so it can be made sticky on mobile and
+     turned into a horizontal bar next to the logo on desktop. -->
+<header>
+  <nav class="navbar">
+    <span class="logo">Madzendi's Kitchen</span>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="registration.html">Register</a></li>
+      <li><a href="staff.html">Staff</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="order.html">Order</a></li>
+      <li><a href="play.html">Play</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ===== BANNER / HERO ===== -->
+<div class="banner">
+  <img src="images/logo.png" alt="Madzendi's Kitchen Logo" />
+  <h1>Welcome to Madzendi's Kitchen!</h1>
+  <p>
+    We offer a delicious selection of cooked meals including beef stew, magwinya, kota,
+    braai meat, and refreshing drinks. Experience authentic flavours and quality
+    ingredients in every bite.
+  </p>
+  <a href="products.html">View Our Menu</a>
+  <a href="contact.html" style="margin-left:10px; background-color:#555;">Find Us</a>
+  <p id="last-visited" style="color:#FFD700; font-size:13px; margin-top:15px;"></p>
+</div>
+
+<!-- ===== NEW DIV: MOBILE QUICK-INFO CARD =====
+     This is the essential content added for a mobile user: a phone
+     visitor can tap the phone number straight away without scrolling
+     down to the contact strip. It is shown on mobile only and hidden
+     again once the full contact strip further down is visible
+     (see .mobile / .tablet-desktop rules in styles.css). -->
+<div class="mobile-info mobile">
+  <h3>Quick Order? Give Us a Call!</h3>
+  <h4><a href="tel:+27677624794">&#128222; 067 762 4794</a></h4>
+  <p>Open Monday to Sunday, 7:00 AM &ndash; 7:00 PM</p>
+</div>
+
+<!-- ===== ABOUT SECTION ===== -->
+<div class="about clearfix">
+  <h2>About Madzendi's Kitchen</h2>
+
+  <!-- Both figures live in one flex wrapper so they can sit side by
+       side once there's enough screen width (see styles.css) -->
+  <div class="about-photos">
+    <figure>
+      <img src="images/kota_face.jpg" alt="Food from Madzendi's Kitchen" />
+      <figcaption>A freshly made kota, ready to serve.</figcaption>
+    </figure>
+
+    <figure>
+      <img src="images/owner.jpg" alt="Mr. Tshifhiwa Munyai, Owner of Madzendi's Kitchen" />
+      <figcaption>Mr. Tshifhiwa Munyai &ndash; Owner &amp; Manager</figcaption>
+    </figure>
+  </div>
+
+  <p>
+    Madzendi's Kitchen is a well-known street food stall located in Soweto, Gauteng.
+    It is owned and operated by Mr. Tshifhiwa Munyai. The stall has been serving the
+    local community for many years with freshly prepared South African street food.
+  </p>
+  <p>
+    Mr. Munyai sells a variety of popular South African street foods directly to
+    customers from his stall. The business is not part of any chain or franchise —
+    only freshly prepared food products made with love every day.
+  </p>
+  <p>
+    <strong>Address:</strong> 3261 Shaba Street, Tshiawelo 1818, Soweto<br />
+    <strong>Phone:</strong> 067 762 4794<br />
+    <strong>Hours:</strong> Monday to Sunday, 7:00 AM – 7:00 PM
+  </p>
+</div>
+
+<!-- ===== GALLERY SECTION =====
+     Each photo is now wrapped in a figure/figcaption pair instead of a
+     bare <img>, so every picture carries its own caption. -->
+<div class="gallery">
+  <h2>Photo Gallery</h2>
+  <p>Click on any photo to see it bigger.</p>
+
+  <div class="gallery-row">
+    <figure onclick="openLightbox(0)">
+      <img src="images/beef_stew_box.jpg" alt="Beef Stew" />
+      <figcaption>Beef Stew</figcaption>
+    </figure>
+    <figure onclick="openLightbox(1)">
+      <img src="images/pap_stew.jpg" alt="Pap and Stew" />
+      <figcaption>Pap and Stew</figcaption>
+    </figure>
+    <figure onclick="openLightbox(2)">
+      <img src="images/magwinya.jpg" alt="Magwinya" />
+      <figcaption>Magwinya</figcaption>
+    </figure>
+    <figure onclick="openLightbox(3)">
+      <img src="images/kota.jpg" alt="Kota" />
+      <figcaption>Kota</figcaption>
+    </figure>
+    <figure onclick="openLightbox(4)">
+      <img src="images/boerewors_chips.jpg" alt="Boerewors" />
+      <figcaption>Boerewors &amp; Chips</figcaption>
+    </figure>
+    <figure onclick="openLightbox(5)">
+      <img src="images/chips.jpg" alt="Chips" />
+      <figcaption>Chips</figcaption>
+    </figure>
+    <figure onclick="openLightbox(6)">
+      <img src="images/fried_fish.jpg" alt="Fried Fish" />
+      <figcaption>Fried Fish</figcaption>
+    </figure>
+    <figure onclick="openLightbox(7)">
+      <img src="images/atchar.jpg" alt="Atchar" />
+      <figcaption>Atchar</figcaption>
+    </figure>
+  </div>
+</div>
+
+<!-- ===== LIGHTBOX ===== -->
+<div id="lightbox">
+  <p id="lb-caption">Caption</p>
+  <br />
+  <img id="lb-img" src="" alt="Large view" />
+  <br /><br />
+  <button onclick="lbNav(-1)">&#8592; Previous</button>
+  <button onclick="closeLightbox()">Close</button>
+  <button onclick="lbNav(1)">Next &#8594;</button>
+  <br /><br />
+  <p id="lb-counter" style="color:#aaa;"></p>
+</div>
+
+<!-- ===== CONTACT STRIP =====
+     Full contact details - this only needs to show once there is room,
+     since the mobile-info card above already gives phone users what
+     they need at a glance. -->
+<div class="contact-strip tablet-desktop">
+  <h3>Find Us</h3>
+  <p>3261 Shaba Street, Tshiawelo 1818, Soweto, Gauteng</p>
+  <p>Phone: 067 762 4794</p>
+  <p>Email: info@madzendiskitchen.com</p>
+  <p>Open Monday to Sunday: 7:00 AM – 7:00 PM</p>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p>Contact: <a href="mailto:info@madzendiskitchen.com">info@madzendiskitchen.com</a> | +27 67 762 4794</p>
+  <p>&copy; 2026 Madzendi's Kitchen. All rights reserved.</p>
+</footer>
+
+<!-- ===== LAST VISITED DATE ===== -->
+<script>
+
+  // -------------------------------------------------------
+  // SHOW AND UPDATE THE LAST VISITED DATE
+  // Reads a "lastVisited" cookie set on a previous visit and
+  // displays it, then overwrites the cookie with today's date
+  // so the NEXT visit will show this one.
+  // -------------------------------------------------------
+  function showLastVisited() {
+    var cookies = document.cookie.split(";");
+    var lastVisited = null;
+
+    for (var i = 0; i < cookies.length; i++) {
+      var cookiePair = cookies[i].trim().split("=");
+      if (cookiePair[0] === "lastVisited") {
+        lastVisited = decodeURIComponent(cookiePair[1]);
+      }
+    }
+
+    var display = document.getElementById("last-visited");
+
+    if (lastVisited) {
+      display.innerText = "Last visited: " + lastVisited;
+    } else {
+      display.innerText = "Welcome! This looks like your first visit.";
+    }
+
+    var now = new Date();
+    var expiryDate = new Date();
+    expiryDate.setFullYear(expiryDate.getFullYear() + 1);
+
+    document.cookie = "lastVisited=" + encodeURIComponent(now.toLocaleString()) +
+                       "; expires=" + expiryDate.toUTCString() + "; path=/";
+  }
+
+  window.addEventListener("load", showLastVisited);
+
+</script>
+
+<!-- ===== LIGHTBOX JAVASCRIPT ===== -->
+<script>
+  // Array of all gallery images and their captions
+  var galleryImages = [
+    { src: "images/beef_stew_box.jpg",    caption: "Beef Stew" },
+    { src: "images/pap_stew.jpg",         caption: "Pap and Beef Stew" },
+    { src: "images/magwinya.jpg",         caption: "Magwinya (Fat Cakes)" },
+    { src: "images/kota.jpg",             caption: "Kota - Stuffed Quarter Loaf" },
+    { src: "images/boerewors_chips.jpg",  caption: "Boerewors and Chips" },
+    { src: "images/chips.jpg",            caption: "Spicy Chips" },
+    { src: "images/fried_fish.jpg",       caption: "Fried Fish" },
+    { src: "images/atchar.jpg",           caption: "Atchar" }
+  ];
+
+  var currentIndex = 0;
+
+  function openLightbox(index) {
+    currentIndex = index;
+    document.getElementById("lightbox").style.display = "block";
+    document.getElementById("lb-img").src = galleryImages[index].src;
+    document.getElementById("lb-caption").innerText = galleryImages[index].caption;
+    document.getElementById("lb-counter").innerText = (index + 1) + " of " + galleryImages.length;
+  }
+
+  function closeLightbox() {
+    document.getElementById("lightbox").style.display = "none";
+  }
+
+  function lbNav(direction) {
+    currentIndex = currentIndex + direction;
+    if (currentIndex >= galleryImages.length) { currentIndex = 0; }
+    if (currentIndex < 0) { currentIndex = galleryImages.length - 1; }
+    document.getElementById("lb-img").src = galleryImages[currentIndex].src;
+    document.getElementById("lb-caption").innerText = galleryImages[currentIndex].caption;
+    document.getElementById("lb-counter").innerText = (currentIndex + 1) + " of " + galleryImages.length;
+  }
+</script>
+
+</body>
+</html>

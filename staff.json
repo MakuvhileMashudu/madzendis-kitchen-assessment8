@@ -1,0 +1,82 @@
+[
+  {
+    "staffNumber": "001",
+    "firstName": "Tshifhiwa",
+    "lastName": "Munyai",
+    "jobDescription": "Owner and Manager",
+    "workPhone": "+27 67 762 4794",
+    "workEmail": "tshifhiwa.munyai@madzendiskitchen.com"
+  },
+  {
+    "staffNumber": "002",
+    "firstName": "Mashudu",
+    "lastName": "Makuvhile",
+    "jobDescription": "Web Developer",
+    "workPhone": "+27 71 731 5799",
+    "workEmail": "12747762@mylife.unisa.ac.za"
+  },
+  {
+    "staffNumber": "003",
+    "firstName": "Lindiwe",
+    "lastName": "Khoza",
+    "jobDescription": "Head Cook",
+    "workPhone": "+27 71 234 5601",
+    "workEmail": "lindiwe.khoza@madzendiskitchen.com"
+  },
+  {
+    "staffNumber": "004",
+    "firstName": "Sipho",
+    "lastName": "Ndlovu",
+    "jobDescription": "Assistant Cook",
+    "workPhone": "+27 71 234 5602",
+    "workEmail": "sipho.ndlovu@madzendiskitchen.com"
+  },
+  {
+    "staffNumber": "005",
+    "firstName": "Nomvula",
+    "lastName": "Mahlangu",
+    "jobDescription": "Cashier",
+    "workPhone": "+27 71 234 5603",
+    "workEmail": "nomvula.mahlangu@madzendiskitchen.com"
+  },
+  {
+    "staffNumber": "006",
+    "firstName": "Thabo",
+    "lastName": "Sithole",
+    "jobDescription": "Till Operator",
+    "workPhone": "+27 71 234 5604",
+    "workEmail": "thabo.sithole@madzendiskitchen.com"
+  },
+  {
+    "staffNumber": "007",
+    "firstName": "Zanele",
+    "lastName": "Mokoena",
+    "jobDescription": "Kitchen Assistant",
+    "workPhone": "+27 71 234 5605",
+    "workEmail": "zanele.mokoena@madzendiskitchen.com"
+  },
+  {
+    "staffNumber": "008",
+    "firstName": "Kagiso",
+    "lastName": "Dube",
+    "jobDescription": "Delivery Coordinator",
+    "workPhone": "+27 71 234 5606",
+    "workEmail": "kagiso.dube@madzendiskitchen.com"
+  },
+  {
+    "staffNumber": "009",
+    "firstName": "Palesa",
+    "lastName": "Radebe",
+    "jobDescription": "Stock Controller",
+    "workPhone": "+27 71 234 5607",
+    "workEmail": "palesa.radebe@madzendiskitchen.com"
+  },
+  {
+    "staffNumber": "010",
+    "firstName": "Bongani",
+    "lastName": "Zulu",
+    "jobDescription": "Cleaner",
+    "workPhone": "+27 71 234 5608",
+    "workEmail": "bongani.zulu@madzendiskitchen.com"
+  }
+]

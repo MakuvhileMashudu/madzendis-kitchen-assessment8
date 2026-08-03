@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register - Madzendi's Kitchen</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header>
+  <nav class="navbar">
+    <span class="logo">Madzendi's Kitchen</span>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="registration.html">Register</a></li>
+      <li><a href="staff.html">Staff</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="order.html">Order</a></li>
+      <li><a href="play.html">Play</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ===== PAGE HEADING ===== -->
+<h1 class="page-heading">Customer Registration</h1>
+
+<!-- ===== FORM CONTAINER ===== -->
+<div class="form-container">
+  <h2>Create Your Account</h2>
+  <p>Please fill in all the fields below to register as a customer.</p>
+
+  <!-- Success message shown after successful submission -->
+  <div id="success-msg">
+    <strong>Welcome to Madzendi's Kitchen!</strong><br />
+    Your registration was successful. Taking you to the order page...<br /><br />
+    <a href="orderConfirmation.html" id="success-link" style="background-color:#8B0000; color:white; padding:12px 28px; text-decoration:none; font-size:15px; display:inline-block;">
+      Click here to Place Your Order &rarr;
+    </a>
+  </div>
+
+  <form id="reg-form" onsubmit="return validateForm()">
+
+    <!-- ===== CLIENT INFORMATION ===== -->
+    <div class="section-title">CLIENT INFORMATION</div>
+
+    <!-- Preferred Name -->
+    <label for="username">Preferred Name:</label>
+    <input type="text" id="username" name="username" placeholder="What would you like to be called?" />
+    <span class="error" id="username-error"></span>
+
+    <!-- Full Names as on ID -->
+    <label for="fname">Client Full Names (as on ID):</label>
+    <input type="text" id="fname" name="fname" placeholder="Enter your full first name(s)" />
+    <span class="error" id="fname-error"></span>
+
+    <!-- Surname -->
+    <label for="lname">Surname:</label>
+    <input type="text" id="lname" name="lname" placeholder="Enter your surname" />
+    <span class="error" id="lname-error"></span>
+
+    <!-- ID Number -->
+    <label for="idnum">ID Number (13 digits):</label>
+    <input type="text" id="idnum" name="idnum" placeholder="e.g. 9001015009087" maxlength="13" />
+    <span class="error" id="idnum-error"></span>
+
+    <!-- Cell Phone - +27 prefix auto-shows -->
+    <label for="phone">Cell Phone Number:</label>
+    <div class="phone-row">
+      <div class="phone-prefix">+27</div>
+      <input type="tel" id="phone" name="phone" placeholder="71 234 5678 (9 digits without leading 0)" maxlength="12" />
+    </div>
+    <span class="error" id="phone-error"></span>
+
+    <!-- Email -->
+    <label for="email">E-mail Address:</label>
+    <input type="email" id="email" name="email" placeholder="e.g. name@email.com" />
+    <span class="error" id="email-error"></span>
+
+    <!-- ===== SHIPPING ADDRESS ===== -->
+    <div class="section-title">SHIPPING ADDRESS</div>
+
+    <label for="addr1">Street Address:</label>
+    <input type="text" id="addr1" name="addr1" placeholder="e.g. 3261 Shaba Street" />
+    <span class="error" id="addr1-error"></span>
+
+    <label for="addr2">Suburb:</label>
+    <input type="text" id="addr2" name="addr2" placeholder="e.g. Tshiawelo" />
+    <span class="error" id="addr2-error"></span>
+
+    <label for="city">City / Town:</label>
+    <input type="text" id="city" name="city" placeholder="e.g. Soweto" />
+    <span class="error" id="city-error"></span>
+
+    <label for="province">Province:</label>
+    <select id="province" name="province">
+      <option value="">-- Select Province --</option>
+      <option value="Gauteng">Gauteng</option>
+      <option value="Western Cape">Western Cape</option>
+      <option value="KwaZulu-Natal">KwaZulu-Natal</option>
+      <option value="Eastern Cape">Eastern Cape</option>
+      <option value="Limpopo">Limpopo</option>
+      <option value="Mpumalanga">Mpumalanga</option>
+      <option value="North West">North West</option>
+      <option value="Northern Cape">Northern Cape</option>
+      <option value="Free State">Free State</option>
+    </select>
+    <span class="error" id="province-error"></span>
+
+    <label for="postal">Postal Code:</label>
+    <input type="text" id="postal" name="postal" placeholder="e.g. 1818" maxlength="4" />
+    <span class="error" id="postal-error"></span>
+
+    <!-- ===== BILLING ADDRESS ===== -->
+    <div class="section-title">BILLING ADDRESS</div>
+
+    <!-- Checkbox to copy shipping address to billing address -->
+    <p>
+      <input type="checkbox" id="copy-address" onclick="copyAddress()" />
+      <label for="copy-address" style="display:inline; font-weight:normal;">
+        My billing address is the same as my shipping address
+      </label>
+    </p>
+
+    <label for="bill-addr1">Billing Street Address:</label>
+    <input type="text" id="bill-addr1" name="bill-addr1" placeholder="Billing street address" />
+    <span class="error" id="bill-addr1-error"></span>
+
+    <label for="bill-addr2">Billing Suburb:</label>
+    <input type="text" id="bill-addr2" name="bill-addr2" placeholder="Billing suburb" />
+
+    <label for="bill-city">Billing City / Town:</label>
+    <input type="text" id="bill-city" name="bill-city" placeholder="e.g. Soweto" />
+    <span class="error" id="bill-city-error"></span>
+
+    <label for="bill-province">Billing Province:</label>
+    <select id="bill-province" name="bill-province">
+      <option value="">-- Select Province --</option>
+      <option value="Gauteng">Gauteng</option>
+      <option value="Western Cape">Western Cape</option>
+      <option value="KwaZulu-Natal">KwaZulu-Natal</option>
+      <option value="Eastern Cape">Eastern Cape</option>
+      <option value="Limpopo">Limpopo</option>
+      <option value="Mpumalanga">Mpumalanga</option>
+      <option value="North West">North West</option>
+      <option value="Northern Cape">Northern Cape</option>
+      <option value="Free State">Free State</option>
+    </select>
+
+    <label for="bill-postal">Billing Postal Code:</label>
+    <input type="text" id="bill-postal" name="bill-postal" placeholder="e.g. 1818" maxlength="4" />
+    <span class="error" id="bill-postal-error"></span>
+
+    <!-- ===== WHERE DID YOU HEAR ABOUT US ===== -->
+    <div class="section-title">WHERE DID YOU HEAR ABOUT US?</div>
+
+    <div class="radio-group">
+      <div><input type="radio" name="heard" id="heard-road" value="Saw on side of road" /><label for="heard-road">Saw on side of road</label></div>
+      <div><input type="radio" name="heard" id="heard-mouth" value="Word of mouth" /><label for="heard-mouth">Word of mouth</label></div>
+      <div><input type="radio" name="heard" id="heard-internet" value="Internet search" /><label for="heard-internet">Internet search</label></div>
+      <div><input type="radio" name="heard" id="heard-advert" value="Advertising" /><label for="heard-advert">Advertising</label></div>
+    </div>
+    <span class="error" id="heard-error"></span>
+
+    <!-- ===== CREDIT CARD DETAILS ===== -->
+    <div class="section-title">CREDIT CARD DETAILS</div>
+
+    <label for="card-name">Name on Credit Card:</label>
+    <input type="text" id="card-name" name="card-name" placeholder="As it appears on your card" />
+    <span class="error" id="card-name-error"></span>
+
+    <label for="card-type">Credit Card Type:</label>
+    <select id="card-type" name="card-type">
+      <option value="">-- Select Card Type --</option>
+      <option value="Visa">Visa</option>
+      <option value="Mastercard">Mastercard</option>
+      <option value="American Express">American Express</option>
+    </select>
+    <span class="error" id="card-type-error"></span>
+
+    <label for="card-number">Credit Card Number (16 digits):</label>
+    <input type="text" id="card-number" name="card-number" placeholder="e.g. 4539 1488 0343 6467" maxlength="19" />
+    <span class="error" id="card-number-error"></span>
+
+    <!-- Expiration Month and Year dropdowns -->
+    <label>Expiration Date:</label>
+    <div class="expiry-row">
+      <select id="exp-month" name="exp-month">
+        <option value="">Month</option>
+        <option value="01">January</option>
+        <option value="02">February</option>
+        <option value="03">March</option>
+        <option value="04">April</option>
+        <option value="05">May</option>
+        <option value="06">June</option>
+        <option value="07">July</option>
+        <option value="08">August</option>
+        <option value="09">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+      <select id="exp-year" name="exp-year">
+        <option value="">Year</option>
+        <option value="2025">2025</option>
+        <option value="2026">2026</option>
+        <option value="2027">2027</option>
+        <option value="2028">2028</option>
+        <option value="2029">2029</option>
+        <option value="2030">2030</option>
+      </select>
+    </div>
+    <span class="error" id="exp-error"></span>
+
+    <!-- CVC Number -->
+    <label for="cvc">CVC Number (3 digits):</label>
+    <input type="text" id="cvc" name="cvc" placeholder="3-digit security code on back of card" maxlength="4" />
+    <span class="error" id="cvc-error"></span>
+
+    <!-- ===== USERNAME AND PASSWORD ===== -->
+    <div class="section-title">USERNAME AND PASSWORD</div>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="8+ chars, 1 uppercase, 1 digit, 1 of !@#$" />
+    <span class="error" id="password-error"></span>
+
+    <label for="confirm-password">Confirm Password:</label>
+    <input type="password" id="confirm-password" name="confirm-password" placeholder="Re-enter your password" />
+    <span class="error" id="confirm-password-error"></span>
+
+    <!-- Submit button -->
+    <input type="submit" value="SUBMIT REGISTRATION" />
+
+  </form>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p>Contact: <a href="mailto:info@madzendiskitchen.com">info@madzendiskitchen.com</a> | +27 67 762 4794</p>
+  <p>&copy; 2026 Madzendi's Kitchen. All rights reserved.</p>
+</footer>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+
+  // -------------------------------------------------------
+  // CAPTURE PRODUCT SELECTIONS PASSED IN FROM products.html
+  // These arrive as a query string, e.g. registration.html?products=beef:2:1,kota:1:0
+  // We hold on to the raw string so it can be forwarded again
+  // to orderConfirmation.html once registration is complete.
+  // -------------------------------------------------------
+  var incomingProducts = "";
+  (function captureIncomingProducts() {
+    var queryParams = new URLSearchParams(window.location.search);
+    incomingProducts = queryParams.get("products") || "";
+  })();
+
+
+  // -------------------------------------------------------
+  // COPY SHIPPING ADDRESS TO BILLING ADDRESS (Hands-on-project 6-3)
+  // Runs when the checkbox is ticked or unticked
+  // -------------------------------------------------------
+  function copyAddress() {
+    var checkbox = document.getElementById("copy-address");
+
+    if (checkbox.checked) {
+      // Checkbox ticked - copy all shipping fields to billing fields
+      document.getElementById("bill-addr1").value    = document.getElementById("addr1").value;
+      document.getElementById("bill-addr2").value    = document.getElementById("addr2").value;
+      document.getElementById("bill-city").value     = document.getElementById("city").value;
+      document.getElementById("bill-postal").value   = document.getElementById("postal").value;
+      document.getElementById("bill-province").value = document.getElementById("province").value;
+
+      // Make billing fields read-only while checkbox is ticked
+      document.getElementById("bill-addr1").readOnly   = true;
+      document.getElementById("bill-addr2").readOnly   = true;
+      document.getElementById("bill-city").readOnly    = true;
+      document.getElementById("bill-postal").readOnly  = true;
+
+    } else {
+      // Checkbox unticked - clear all billing fields
+      document.getElementById("bill-addr1").value    = "";
+      document.getElementById("bill-addr2").value    = "";
+      document.getElementById("bill-city").value     = "";
+      document.getElementById("bill-postal").value   = "";
+      document.getElementById("bill-province").value = "";
+
+      // Make billing fields editable again
+      document.getElementById("bill-addr1").readOnly   = false;
+      document.getElementById("bill-addr2").readOnly   = false;
+      document.getElementById("bill-city").readOnly    = false;
+      document.getElementById("bill-postal").readOnly  = false;
+    }
+  }
+
+
+  // -------------------------------------------------------
+  // LUHN ALGORITHM - validates a credit card number
+  // Standard formula used by banks worldwide
+  // -------------------------------------------------------
+  function luhnCheck(cardNumber) {
+    // Remove all spaces from the card number before checking
+    var number  = cardNumber.replace(/\s/g, "");
+    var total   = 0;
+    var isEven  = false;
+
+    // Loop through each digit from right to left
+    for (var i = number.length - 1; i >= 0; i--) {
+      var digit = parseInt(number[i]);
+
+      if (isEven) {
+        digit = digit * 2;
+        if (digit > 9) { digit = digit - 9; }
+      }
+
+      total  = total + digit;
+      isEven = !isEven;
+    }
+
+    // If total divides evenly by 10 the card number is valid
+    return (total % 10 === 0);
+  }
+
+
+  // -------------------------------------------------------
+  // SA ID CHECKSUM - validates a South African ID number
+  // Uses the Luhn-based checksum used by the SA government
+  // -------------------------------------------------------
+  function saIdChecksumValid(idNumber) {
+    var total     = 0;
+    var alternate = false;
+
+    // Loop through digits from right to left
+    for (var i = idNumber.length - 1; i >= 0; i--) {
+      var digit = parseInt(idNumber[i]);
+
+      if (alternate) {
+        digit = digit * 2;
+        if (digit > 9) { digit = digit - 9; }
+      }
+
+      total    += digit;
+      alternate = !alternate;
+    }
+
+    // Valid if total is divisible by 10
+    return (total % 10 === 0);
+  }
+
+
+  // -------------------------------------------------------
+  // FORM VALIDATION - runs when the form is submitted
+  // Each field has its own custom validation message
+  // -------------------------------------------------------
+  function validateForm() {
+    var isValid = true;
+
+    // Clear all previous error messages before re-validating
+    var errors = document.querySelectorAll(".error");
+    for (var i = 0; i < errors.length; i++) {
+      errors[i].innerText = "";
+    }
+
+    // --- Validate Preferred Name ---
+    var username = document.getElementById("username").value.trim();
+    if (username === "") {
+      document.getElementById("username-error").innerText = "Please fill in the Preferred Name field.";
+      isValid = false;
+    }
+
+    // --- Validate Full Name ---
+    var fname = document.getElementById("fname").value.trim();
+    if (fname === "") {
+      document.getElementById("fname-error").innerText = "Please fill in the Full Name field.";
+      isValid = false;
+    }
+
+    // --- Validate Surname ---
+    var lname = document.getElementById("lname").value.trim();
+    if (lname === "") {
+      document.getElementById("lname-error").innerText = "Please fill in the Surname field.";
+      isValid = false;
+    }
+
+    // --- Validate ID Number: pattern matching, regular expression, Luhn/checksum ---
+    var idnum     = document.getElementById("idnum").value.trim();
+    var idPattern = /^\d{13}$/;
+    if (!idPattern.test(idnum)) {
+      document.getElementById("idnum-error").innerText = "ID number must be exactly 13 digits. Example: 9001015009087";
+      isValid = false;
+    } else if (!saIdChecksumValid(idnum)) {
+      document.getElementById("idnum-error").innerText = "Invalid checksum in ID number.";
+      isValid = false;
+    }
+
+    // --- Validate Cell Phone: pattern matching and regular expression (+27 prefix auto-shown) ---
+    var phone        = document.getElementById("phone").value.trim().replace(/\s/g, "");
+    var phonePattern = /^[0-9]{9}$/;
+    if (!phonePattern.test(phone)) {
+      document.getElementById("phone-error").innerText = "Please enter a valid 9-digit number (without leading 0). Example: 712345678";
+      isValid = false;
+    }
+
+    // --- Validate Email: pattern matching and regular expression ---
+    var email        = document.getElementById("email").value.trim();
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      document.getElementById("email-error").innerText = "Please enter a valid email address. Example: name@email.com";
+      isValid = false;
+    }
+
+    // --- Validate Shipping Street Address ---
+    var addr1 = document.getElementById("addr1").value.trim();
+    if (addr1 === "") {
+      document.getElementById("addr1-error").innerText = "Please fill in the Shipping Address 1 field.";
+      isValid = false;
+    }
+
+    // --- Validate Shipping Suburb ---
+    var addr2 = document.getElementById("addr2").value.trim();
+    if (addr2 === "") {
+      document.getElementById("addr2-error").innerText = "Please fill in the Shipping Address 2 field.";
+      isValid = false;
+    }
+
+    // --- Validate Shipping City ---
+    var city = document.getElementById("city").value.trim();
+    if (city === "") {
+      document.getElementById("city-error").innerText = "Please fill in the Shipping City field.";
+      isValid = false;
+    }
+
+    // --- Validate Shipping Province ---
+    var province = document.getElementById("province").value;
+    if (province === "") {
+      document.getElementById("province-error").innerText = "Please select a province.";
+      isValid = false;
+    }
+
+    // --- Validate Shipping Postal Code ---
+    var postal        = document.getElementById("postal").value.trim();
+    var postalPattern = /^\d{4}$/;
+    if (postal === "") {
+      document.getElementById("postal-error").innerText = "Please fill in the Shipping Code field.";
+      isValid = false;
+    } else if (!postalPattern.test(postal)) {
+      document.getElementById("postal-error").innerText = "Shipping postal code must be exactly 4 digits.";
+      isValid = false;
+    }
+
+    // --- Validate Billing Address (only if copy checkbox is NOT ticked) ---
+    var copyChecked = document.getElementById("copy-address").checked;
+    if (!copyChecked) {
+      var billAddr1 = document.getElementById("bill-addr1").value.trim();
+      if (billAddr1 === "") {
+        document.getElementById("bill-addr1-error").innerText = "Please fill in the Billing Address 1 field.";
+        isValid = false;
+      }
+
+      var billCity = document.getElementById("bill-city").value.trim();
+      if (billCity === "") {
+        document.getElementById("bill-city-error").innerText = "Please fill in the Billing City field.";
+        isValid = false;
+      }
+    }
+
+    // --- Validate Billing Postal Code (if filled in, must be 4 digits) ---
+    var billPostal = document.getElementById("bill-postal").value.trim();
+    if (billPostal !== "" && !postalPattern.test(billPostal)) {
+      document.getElementById("bill-postal-error").innerText = "Billing postal code must be exactly 4 digits.";
+      isValid = false;
+    }
+
+    // --- Validate Where Did You Hear About Us ---
+    var heardOptions = document.getElementsByName("heard");
+    var heardSelected = false;
+    for (var h = 0; h < heardOptions.length; h++) {
+      if (heardOptions[h].checked) { heardSelected = true; break; }
+    }
+    if (!heardSelected) {
+      document.getElementById("heard-error").innerText = "Please tell us where you heard about us.";
+      isValid = false;
+    }
+
+    // --- Validate Name on Credit Card ---
+    var cardName = document.getElementById("card-name").value.trim();
+    if (cardName === "") {
+      document.getElementById("card-name-error").innerText = "Please enter the name on your card.";
+      isValid = false;
+    }
+
+    // --- Validate Credit Card Type ---
+    var cardType = document.getElementById("card-type").value;
+    if (cardType === "") {
+      document.getElementById("card-type-error").innerText = "Please select a card type.";
+      isValid = false;
+    }
+
+    // --- Validate Credit Card Number: pattern matching, regular expression, Luhn algorithm ---
+    var cardNumber  = document.getElementById("card-number").value.trim();
+    var cardPattern = /^[\d\s]{16,19}$/;
+    if (!cardPattern.test(cardNumber)) {
+      document.getElementById("card-number-error").innerText = "Credit card number must be 16 digits. Example: 4539 1488 0343 6467";
+      isValid = false;
+    } else if (!luhnCheck(cardNumber)) {
+      document.getElementById("card-number-error").innerText = "Enter a valid card number.";
+      isValid = false;
+    }
+
+    // --- Validate Expiration Month and Year ---
+    var expMonth = document.getElementById("exp-month").value;
+    var expYear  = document.getElementById("exp-year").value;
+    if (expMonth === "" || expYear === "") {
+      document.getElementById("exp-error").innerText = "Please select an expiration month and year.";
+      isValid = false;
+    }
+
+    // --- Validate CVC: must be exactly 3 digits ---
+    var cvc        = document.getElementById("cvc").value.trim();
+    var cvcPattern = /^\d{3}$/;
+    if (!cvcPattern.test(cvc)) {
+      document.getElementById("cvc-error").innerText = "CVC must be exactly 3 digits found on the back of your card.";
+      isValid = false;
+    }
+
+    // --- Validate Password: each requirement is checked independently so ---
+    // --- the user sees exactly which rule(s) they failed to meet.       ---
+    var password = document.getElementById("password").value;
+    var passwordErrors = [];
+
+    if (password.length < 8) {
+      passwordErrors.push("Password must be at least 8 characters long.");
+    }
+    if (!/[A-Z]/.test(password)) {
+      passwordErrors.push("Password must have at least one uppercase letter.");
+    }
+    if (!/[0-9]/.test(password)) {
+      passwordErrors.push("Password must have at least one digit.");
+    }
+    if (!/[!@#$]/.test(password)) {
+      passwordErrors.push("Password must have at least one of the following symbols: !, @, #, or $.");
+    }
+
+    if (passwordErrors.length > 0) {
+      document.getElementById("password-error").innerHTML = passwordErrors.join("<br />");
+      isValid = false;
+    }
+
+    // --- Validate Password Matching ---
+    var confirmPassword = document.getElementById("confirm-password").value;
+    if (password !== confirmPassword) {
+      document.getElementById("confirm-password-error").innerText = "Your passwords must match.";
+      isValid = false;
+    }
+
+    // --- If all fields valid: save to sessionStorage and redirect to order confirmation ---
+    if (isValid) {
+      // Get which "heard about us" option was selected
+      var heardValue = "";
+      for (var h = 0; h < heardOptions.length; h++) {
+        if (heardOptions[h].checked) { heardValue = heardOptions[h].value; break; }
+      }
+
+      // Build a query string with all the registration details.
+      // This is how the data is handed over to orderConfirmation.html
+      // (per the assignment brief: "by appending data to a query string").
+      var params = new URLSearchParams();
+      params.set("un",    document.getElementById("username").value);
+      params.set("fn",    document.getElementById("fname").value);
+      params.set("ln",    document.getElementById("lname").value);
+      params.set("id",    idnum);
+      params.set("ph",    "+27" + phone);
+      params.set("em",    email);
+      params.set("a1",    addr1);
+      params.set("a2",    addr2);
+      params.set("ci",    city);
+      params.set("pr",    province);
+      params.set("po",    postal);
+      params.set("heard", heardValue);
+      params.set("cn",    cardName);
+      params.set("ct",    cardType);
+      params.set("cnum",  cardNumber);
+      params.set("exm",   expMonth);
+      params.set("exy",   expYear);
+
+      // Carry forward the product selections made on products.html, if any
+      if (incomingProducts !== "") {
+        params.set("products", incomingProducts);
+      }
+
+      var targetUrl = "orderConfirmation.html?" + params.toString();
+
+      // Point the "Click here" link at the fully-built URL too, in case
+      // the user clicks it instead of waiting for the auto-redirect
+      document.getElementById("success-link").href = targetUrl;
+
+      // Show success message
+      document.getElementById("success-msg").style.display = "block";
+
+      // Scroll to top so user sees the success message
+      window.scrollTo(0, 0);
+
+      // Automatically redirect to order confirmation page after 3 seconds
+      setTimeout(function() {
+        window.location.href = targetUrl;
+      }, 3000);
+    }
+
+    // Return false prevents page from reloading
+    return false;
+  }
+
+</script>
+
+</body>
+</html>

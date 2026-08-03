@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Play - Madzendi's Kitchen</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header>
+  <nav class="navbar">
+    <span class="logo">Madzendi's Kitchen</span>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="registration.html">Register</a></li>
+      <li><a href="staff.html">Staff</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="order.html">Order</a></li>
+      <li><a href="play.html">Play</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Page heading -->
+<h1 class="page-heading">Build Your Kota!</h1>
+
+<!-- Game section -->
+<div class="game-section">
+  <h2>BUILD YOUR KOTA GAME</h2>
+  <p>
+    Select the ingredients you want in your kota, then click the
+    "Build My Kota" button to see your creation and the price!
+  </p>
+
+  <!-- Ingredient checkboxes with images -->
+  <div class="ingredients-grid">
+
+    <div class="ingredient-box" id="box-chips" onclick="toggleIngredient('chips')">
+      <img src="images/chips.jpg" alt="Chips" />
+      <input type="checkbox" id="chips" value="10" />
+      <label for="chips">Chips - R10</label>
+    </div>
+
+    <div class="ingredient-box" id="box-fish" onclick="toggleIngredient('fish')">
+      <img src="images/fried_fish.jpg" alt="Fish" />
+      <input type="checkbox" id="fish" value="15" />
+      <label for="fish">Fish - R15</label>
+    </div>
+
+    <div class="ingredient-box" id="box-atchar" onclick="toggleIngredient('atchar')">
+      <img src="images/atchar.jpg" alt="Atchar" />
+      <input type="checkbox" id="atchar" value="5" />
+      <label for="atchar">Atchar - R5</label>
+    </div>
+
+    <div class="ingredient-box" id="box-boerewors" onclick="toggleIngredient('boerewors')">
+      <img src="images/boerewors_chips.jpg" alt="Russian / Boerewors" />
+      <input type="checkbox" id="boerewors" value="20" />
+      <label for="boerewors">Russian - R20</label>
+    </div>
+
+    <div class="ingredient-box" id="box-stew" onclick="toggleIngredient('stew')">
+      <img src="images/beef_stew_box.jpg" alt="Beef Stew" />
+      <input type="checkbox" id="stew" value="25" />
+      <label for="stew">Beef Stew - R25</label>
+    </div>
+
+    <div class="ingredient-box" id="box-magwinya" onclick="toggleIngredient('magwinya')">
+      <img src="images/magwinya.jpg" alt="Magwinya" />
+      <input type="checkbox" id="magwinya" value="5" />
+      <label for="magwinya">Magwinya - R5</label>
+    </div>
+
+  </div>
+
+  <!-- Buttons -->
+  <br />
+  <button class="btn-build" onclick="buildKota()">BUILD MY KOTA</button>
+  <button class="btn-reset" onclick="resetGame()">RESET</button>
+
+  <!-- Kota preview (shown after clicking Build) -->
+  <div class="kota-preview" id="kota-preview">
+    <h3>YOUR KOTA PREVIEW</h3>
+    <img src="images/kota.jpg" alt="Your Kota" />
+    <p id="kota-ingredients-list"></p>
+    <p class="price" id="kota-price"></p>
+    <p>Visit us at 3261 Shaba St, Tshiawelo, Soweto to enjoy your kota!</p>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>Contact: <a href="mailto:info@madzendiskitchen.com">info@madzendiskitchen.com</a> | +27 67 762 4794</p>
+  <p>&copy; 2026 Madzendi's Kitchen. All rights reserved.</p>
+</footer>
+
+<script>
+
+  // Toggle ingredient selected state when the box is clicked
+  function toggleIngredient(id) {
+    var checkbox = document.getElementById(id);
+    var box = document.getElementById("box-" + id);
+
+    // Flip the checkbox
+    checkbox.checked = !checkbox.checked;
+
+    // Highlight or un-highlight the box
+    if (checkbox.checked) {
+      box.classList.add("selected");
+    } else {
+      box.classList.remove("selected");
+    }
+  }
+
+  // Build the kota and show the preview
+  function buildKota() {
+    var ingredients = [
+      { id: "chips",      name: "Chips",           price: 10 },
+      { id: "fish",       name: "Fish",             price: 15 },
+      { id: "atchar",     name: "Atchar",           price: 5  },
+      { id: "boerewors",  name: "Russian/Boerewors",price: 20 },
+      { id: "stew",       name: "Beef Stew",        price: 25 },
+      { id: "magwinya",   name: "Magwinya",         price: 5  }
+    ];
+
+    var selectedList = [];
+    var totalPrice = 40; // Base kota price (the bread and polony)
+
+    // Check which ingredients are selected
+    for (var i = 0; i < ingredients.length; i++) {
+      var checkbox = document.getElementById(ingredients[i].id);
+      if (checkbox.checked) {
+        selectedList.push(ingredients[i].name + " (+R" + ingredients[i].price + ")");
+        totalPrice = totalPrice + ingredients[i].price;
+      }
+    }
+
+    // If nothing selected, show a message
+    if (selectedList.length === 0) {
+      alert("Please select at least one ingredient for your kota!");
+      return;
+    }
+
+    // Show the ingredients and price
+    var listText = "Your kota includes: " + selectedList.join(", ");
+    document.getElementById("kota-ingredients-list").innerText = listText;
+    document.getElementById("kota-price").innerText = "Total Price: R" + totalPrice.toFixed(2);
+
+    // Show the preview box
+    document.getElementById("kota-preview").style.display = "block";
+
+    // Scroll to the preview
+    document.getElementById("kota-preview").scrollIntoView();
+  }
+
+  // Reset the game - untick all and hide preview
+  function resetGame() {
+    var ids = ["chips", "fish", "atchar", "boerewors", "stew", "magwinya"];
+
+    for (var i = 0; i < ids.length; i++) {
+      document.getElementById(ids[i]).checked = false;
+      document.getElementById("box-" + ids[i]).classList.remove("selected");
+    }
+
+    document.getElementById("kota-preview").style.display = "none";
+  }
+
+</script>
+
+</body>
+</html>

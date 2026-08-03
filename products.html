@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products – Madzendi's Kitchen</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ===== HEADER + NAVIGATION ===== -->
+<header>
+  <nav class="navbar">
+    <span class="logo">Madzendi's Kitchen</span>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="registration.html">Register</a></li>
+      <li><a href="staff.html">Staff</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="order.html">Order</a></li>
+      <li><a href="play.html">Play</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ===== PAGE HEADING ===== -->
+<div class="page-heading">
+  <h1>Our Menu</h1>
+  <p>Fresh, authentic South African street food made with love every day.</p>
+</div>
+
+<!-- ===== MOBILE ESSENTIAL CONTENT =====
+     A phone user browsing the menu gets a one-tap call button right at
+     the top of the page, before they even scroll to the order table. -->
+<div class="mobile-info mobile">
+  <h3>Not sure what to order?</h3>
+  <h4><a href="tel:+27677624794">&#128222; Call us on 067 762 4794</a></h4>
+</div>
+
+<!-- ===== MAIN CONTENT AREA =====
+     class="grid" is used by the tablet/desktop media queries to lay the
+     three article elements (and the aside beneath them) out in columns. -->
+<main class="grid">
+
+  <!-- Promo div - the id is targeted by the tablet-viewport linear gradient -->
+  <div id="promo-banner">
+    Every kota comes freshly made to order &mdash; nothing is pre-packed or reheated!
+  </div>
+
+  <div class="article-group">
+
+    <!-- Article 1 -->
+    <article>
+      <img src="images/kota.jpg" alt="Kota" />
+      <h3>Our Famous Kota</h3>
+      <p>A quarter loaf stuffed with polony, atchar, chips and a fried egg — the stall's signature order.</p>
+      <ul>
+        <li>Ready in under 10 minutes</li>
+        <li>Customise with extra fillings</li>
+        <li>Best seller since day one</li>
+      </ul>
+    </article>
+
+    <!-- Article 2: gets a background colour via the nth-of-type(2) rule -->
+    <article>
+      <img src="images/braai_meat.jpg" alt="Braai Meat Platter" />
+      <h3>Braai Meat Platter</h3>
+      <p>Grilled boerewors, chicken wings and lamb chops, cooked fresh on the fire every day.</p>
+      <ul>
+        <li>Great for sharing</li>
+        <li>Served with pap or chips</li>
+        <li>Ask about bulk platter orders</li>
+      </ul>
+    </article>
+
+    <!-- Article 3 -->
+    <article>
+      <img src="images/magwinya.jpg" alt="Magwinya" />
+      <h3>Fresh Magwinya</h3>
+      <p>Light, fluffy fat cakes fried to order — a favourite for breakfast or as a snack.</p>
+      <ul>
+        <li>Sold individually or by the dozen</li>
+        <li>Great with atchar or jam</li>
+        <li>Always fried fresh, never pre-made</li>
+      </ul>
+    </article>
+
+  </div>
+
+  <!-- Aside: additional content below the three articles -->
+  <aside>
+    <strong>Delivery &amp; Collection:</strong> Orders placed before 6:00 PM are ready for
+    collection within 30 minutes. Delivery is available within a 5&nbsp;km radius of the stall —
+    ask our staff for details.
+  </aside>
+
+</main>
+
+<!-- ===== MENU / SELECTION TABLE ===== -->
+<div class="menu">
+  <h2>Build Your Order</h2>
+  <p class="instructions">
+    Tick "Select" on any item you want, choose a quantity, and add an extra if you like.
+    Select at least 2 products, then click "Proceed to Registration".
+  </p>
+
+  <table id="product-table">
+    <tr>
+      <th>Photo</th>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Description</th>
+      <th>Select</th>
+      <th>Qty</th>
+      <th>Extra</th>
+    </tr>
+
+    <tbody>
+    <tr data-id="beef" data-price="55" data-extra-name="Extra Gravy" data-extra-price="5">
+      <td><img src="images/beef_stew_box.jpg" alt="Beef Stew" /></td>
+      <td><strong>Beef Stew</strong></td>
+      <td>R55.00</td>
+      <td>Tender beef pieces slow-cooked in a rich, savoury gravy with mixed vegetables.</td>
+      <td class="select-cell"><input type="checkbox" class="select-product" /></td>
+      <td><input type="number" class="qty-input" value="1" min="1" /></td>
+      <td><label class="extra-label"><input type="checkbox" class="extra-checkbox" /> Extra Gravy +R5</label></td>
+    </tr>
+    <tr data-id="magwinya" data-price="5" data-extra-name="Extra Sugar Dusting" data-extra-price="2">
+      <td><img src="images/magwinya.jpg" alt="Magwinya" /></td>
+      <td><strong>Magwinya (Fat Cakes)</strong></td>
+      <td>R5.00 each</td>
+      <td>Deep-fried dough balls – a light, fluffy and beloved South African street snack.</td>
+      <td class="select-cell"><input type="checkbox" class="select-product" /></td>
+      <td><input type="number" class="qty-input" value="1" min="1" /></td>
+      <td><label class="extra-label"><input type="checkbox" class="extra-checkbox" /> Extra Sugar Dusting +R2</label></td>
+    </tr>
+    <tr data-id="kota" data-price="40" data-extra-name="Extra Filling (Chips &amp; Cheese)" data-extra-price="10">
+      <td><img src="images/kota.jpg" alt="Kota" /></td>
+      <td><strong>Kota</strong></td>
+      <td>R40.00</td>
+      <td>A quarter loaf of bread filled with polony, atchar, chips, and a fried egg.</td>
+      <td class="select-cell"><input type="checkbox" class="select-product" /></td>
+      <td><input type="number" class="qty-input" value="1" min="1" /></td>
+      <td><label class="extra-label"><input type="checkbox" class="extra-checkbox" /> Extra Filling (Chips &amp; Cheese) +R10</label></td>
+    </tr>
+    <tr data-id="braai" data-price="120" data-extra-name="Extra Meat Portion" data-extra-price="30">
+      <td><img src="images/braai_meat.jpg" alt="Braai Meat Platter" /></td>
+      <td><strong>Braai Meat Platter</strong></td>
+      <td>R120.00</td>
+      <td>A selection of grilled meats including boerewors, chicken wings, and lamb chops.</td>
+      <td class="select-cell"><input type="checkbox" class="select-product" /></td>
+      <td><input type="number" class="qty-input" value="1" min="1" /></td>
+      <td><label class="extra-label"><input type="checkbox" class="extra-checkbox" /> Extra Meat Portion +R30</label></td>
+    </tr>
+    <tr data-id="papwors" data-price="50" data-extra-name="Extra Wors" data-extra-price="15">
+      <td><img src="images/pap_stew.jpg" alt="Pap and Wors" /></td>
+      <td><strong>Pap and Wors</strong></td>
+      <td>R50.00</td>
+      <td>Soft maize porridge served alongside freshly grilled boerewors sausage.</td>
+      <td class="select-cell"><input type="checkbox" class="select-product" /></td>
+      <td><input type="number" class="qty-input" value="1" min="1" /></td>
+      <td><label class="extra-label"><input type="checkbox" class="extra-checkbox" /> Extra Wors +R15</label></td>
+    </tr>
+    <tr data-id="chips" data-price="20" data-extra-name="Extra Cheese Sauce" data-extra-price="8">
+      <td><img src="images/chips.jpg" alt="Chips" /></td>
+      <td><strong>Spicy Chips</strong></td>
+      <td>R20.00</td>
+      <td>Crispy seasoned chips – the perfect street food side dish.</td>
+      <td class="select-cell"><input type="checkbox" class="select-product" /></td>
+      <td><input type="number" class="qty-input" value="1" min="1" /></td>
+      <td><label class="extra-label"><input type="checkbox" class="extra-checkbox" /> Extra Cheese Sauce +R8</label></td>
+    </tr>
+    <tr data-id="fish" data-price="55" data-extra-name="Extra Lemon Butter Sauce" data-extra-price="5">
+      <td><img src="images/fried_fish.jpg" alt="Fried Fish" /></td>
+      <td><strong>Fried Fish</strong></td>
+      <td>R55.00</td>
+      <td>Crispy golden fried fish fillets seasoned with herbs and spices.</td>
+      <td class="select-cell"><input type="checkbox" class="select-product" /></td>
+      <td><input type="number" class="qty-input" value="1" min="1" /></td>
+      <td><label class="extra-label"><input type="checkbox" class="extra-checkbox" /> Extra Lemon Butter Sauce +R5</label></td>
+    </tr>
+    <tr data-id="atchar" data-price="10" data-extra-name="Extra Portion" data-extra-price="5">
+      <td><img src="images/atchar.jpg" alt="Atchar" /></td>
+      <td><strong>Atchar</strong></td>
+      <td>R10.00</td>
+      <td>Tangy, spicy green mango atchar – the essential kota condiment.</td>
+      <td class="select-cell"><input type="checkbox" class="select-product" /></td>
+      <td><input type="number" class="qty-input" value="1" min="1" /></td>
+      <td><label class="extra-label"><input type="checkbox" class="extra-checkbox" /> Extra Portion +R5</label></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <button type="button" class="order-btn-form" onclick="proceedToRegistration()">Proceed to Registration &rarr;</button>
+  <p style="text-align:center; color:#8B0000; font-size:13px; margin-bottom: 20px;">
+    ⚠️ You will need to register your details before your order can be confirmed.
+  </p>
+</div>
+
+<!-- ===== CONTACT STRIP ===== -->
+<div class="contact-strip">
+  <h3>Find Us</h3>
+  <p>3261 Shaba Street, Tshiawelo 1818, Soweto, Gauteng</p>
+  <p>Phone: 067 762 4794</p>
+  <p>Email: info@madzendiskitchen.com</p>
+  <p>Open Monday to Sunday: 7:00 AM – 7:00 PM</p>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p>Contact: <a href="mailto:info@madzendiskitchen.com">info@madzendiskitchen.com</a> | +27 67 762 4794</p>
+  <p>&copy; 2026 Madzendi's Kitchen. All rights reserved.</p>
+</footer>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+
+  // -------------------------------------------------------
+  // PROCEED TO REGISTRATION
+  // Reads every product row, finds the ones the user selected,
+  // packs them into a compact string (id:qty:extraFlag), and
+  // appends that string to the registration.html URL as a
+  // query string so the data travels with the user to the
+  // next page.
+  // -------------------------------------------------------
+  function proceedToRegistration() {
+    var rows = document.querySelectorAll("#product-table tbody tr[data-id]");
+    var selections = [];
+
+    for (var i = 0; i < rows.length; i++) {
+      var row = rows[i];
+      var selectBox = row.querySelector(".select-product");
+
+      if (selectBox.checked) {
+        var qtyInput = row.querySelector(".qty-input");
+        var qty = parseInt(qtyInput.value) || 1;
+        if (qty < 1) { qty = 1; }
+
+        var extraBox   = row.querySelector(".extra-checkbox");
+        var extraFlag  = (extraBox && extraBox.checked) ? 1 : 0;
+        var productId  = row.getAttribute("data-id");
+
+        selections.push(productId + ":" + qty + ":" + extraFlag);
+      }
+    }
+
+    if (selections.length < 2) {
+      alert("Please select at least 2 products before proceeding.");
+      return;
+    }
+
+    var productsString = selections.join(",");
+
+    var params = new URLSearchParams();
+    params.set("products", productsString);
+
+    window.location.href = "registration.html?" + params.toString();
+  }
+
+</script>
+
+</body>
+</html>

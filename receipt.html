@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Receipt - Madzendi's Kitchen</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header>
+  <nav class="navbar">
+    <span class="logo">Madzendi's Kitchen</span>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="registration.html">Register</a></li>
+      <li><a href="staff.html">Staff</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="order.html">Order</a></li>
+      <li><a href="play.html">Play</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ===== PAGE HEADING ===== -->
+<h1 class="page-heading">Order Receipt</h1>
+
+<div class="receipt-section">
+
+  <!-- Shown if the page is opened without any order data -->
+  <div class="warning-box" id="no-order-warning" style="display:none;">
+    &#9888; No order details were found. Please place an order from the
+    <a href="products.html">Products page</a> first.
+  </div>
+
+  <div id="receipt" style="display:none;">
+    <h2>&#10003; Order Receipt</h2>
+    <p><strong>Preferred Name:</strong> <span id="r-username"></span></p>
+    <p><strong>Surname:</strong> <span id="r-lname"></span></p>
+    <p><strong>Cell Phone:</strong> <span id="r-phone"></span></p>
+    <p><strong>Email:</strong> <span id="r-email"></span></p>
+    <p><strong>Shipping Address:</strong> <span id="r-addr"></span></p>
+    <p><strong>Total Amount Due:</strong> <span id="r-total"></span></p>
+    <br />
+    <p>Your order will be ready for collection within 30 minutes.</p>
+    <p class="thank-you">Thank you for shopping at Madzendi's Kitchen!</p>
+    <a class="home-btn" href="index.html">Back to Home</a>
+  </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p>Contact: <a href="mailto:info@madzendiskitchen.com">info@madzendiskitchen.com</a> | +27 67 762 4794</p>
+  <p>&copy; 2026 Madzendi's Kitchen. All rights reserved.</p>
+</footer>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+
+  // -------------------------------------------------------
+  // LOAD RECEIPT DATA FROM THE QUERY STRING
+  // orderConfirmation.html appends these fields to the URL
+  // when the user clicks "Confirm Order".
+  // -------------------------------------------------------
+  window.onload = function () {
+    var queryParams = new URLSearchParams(window.location.search);
+    var total = queryParams.get("total");
+
+    // If there's no total, the page was opened directly with no order data
+    if (!total) {
+      document.getElementById("no-order-warning").style.display = "block";
+      return;
+    }
+
+    document.getElementById("r-username").innerText = queryParams.get("un")   || "Guest";
+    document.getElementById("r-lname").innerText    = queryParams.get("ln")   || "";
+    document.getElementById("r-phone").innerText     = queryParams.get("ph")   || "N/A";
+    document.getElementById("r-email").innerText     = queryParams.get("em")   || "N/A";
+    document.getElementById("r-addr").innerText      = queryParams.get("addr") || "N/A";
+    document.getElementById("r-total").innerText     = "R" + total;
+
+    document.getElementById("receipt").style.display = "block";
+  };
+
+</script>
+
+</body>
+</html>

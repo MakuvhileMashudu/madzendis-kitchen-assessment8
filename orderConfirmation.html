@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Order Confirmation - Madzendi's Kitchen</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header>
+  <nav class="navbar">
+    <span class="logo">Madzendi's Kitchen</span>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="registration.html">Register</a></li>
+      <li><a href="staff.html">Staff</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="order.html">Order</a></li>
+      <li><a href="play.html">Play</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ===== PAGE HEADING ===== -->
+<h1 class="page-heading">Confirm &amp; Pay</h1>
+
+<div class="order-section">
+
+  <!-- Warning shown if user skipped registration -->
+  <div class="warning-box" id="no-reg-warning" style="display:none;">
+    &#9888; You have not registered yet. Please <a href="registration.html">register here</a> before placing an order.
+  </div>
+
+  <!-- ===== YOUR INFORMATION (from query string) ===== -->
+  <h2>Your Information</h2>
+  <div class="info-box">
+    <p><strong>Preferred Name:</strong> <span id="disp-username"></span></p>
+    <p><strong>Surname:</strong> <span id="disp-lname"></span></p>
+    <!-- ID number: only first 4 digits shown, remaining 9 replaced with *** -->
+    <p><strong>ID Number:</strong> <span id="disp-idnum"></span></p>
+    <p><strong>Cell Phone:</strong> <span id="disp-phone"></span></p>
+    <p><strong>Email:</strong> <span id="disp-email"></span></p>
+    <p><strong>Shipping Address:</strong> <span id="disp-addr"></span></p>
+  </div>
+
+  <!-- ===== PAYMENT DETAILS (from query string) ===== -->
+  <h2>Payment Details</h2>
+  <div class="info-box">
+    <p><strong>Name on Card:</strong> <span id="disp-cardname"></span></p>
+    <p><strong>Card Type:</strong> <span id="disp-cardtype"></span></p>
+    <!-- Card number: only last 4 digits shown, rest replaced with *** -->
+    <p><strong>Card Number:</strong> <span id="disp-cardnum"></span></p>
+    <p><strong>Expiry Date:</strong> <span id="disp-expiry"></span></p>
+  </div>
+
+  <!-- ===== YOUR ORDER ===== -->
+  <h2>Your Order</h2>
+  <p>Products selected on the Products page appear below. You can still adjust quantities here.</p>
+
+  <table id="order-table">
+    <tr>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Cost</th>
+    </tr>
+    <tr data-id="beef" class="not-selected-row">
+      <td>Beef Stew<span class="extra-note" style="display:none;">+ Extra Gravy (R5)</span></td>
+      <td>R55.00</td>
+      <td><input type="number" class="qty" data-price="55" data-extra="5" value="0" min="0" onchange="updateTotal()" /></td>
+      <td class="item-cost">R0.00</td>
+    </tr>
+    <tr data-id="magwinya" class="not-selected-row">
+      <td>Magwinya (Fat Cakes)<span class="extra-note" style="display:none;">+ Extra Sugar Dusting (R2)</span></td>
+      <td>R5.00</td>
+      <td><input type="number" class="qty" data-price="5" data-extra="2" value="0" min="0" onchange="updateTotal()" /></td>
+      <td class="item-cost">R0.00</td>
+    </tr>
+    <tr data-id="kota" class="not-selected-row">
+      <td>Kota<span class="extra-note" style="display:none;">+ Extra Filling (R10)</span></td>
+      <td>R40.00</td>
+      <td><input type="number" class="qty" data-price="40" data-extra="10" value="0" min="0" onchange="updateTotal()" /></td>
+      <td class="item-cost">R0.00</td>
+    </tr>
+    <tr data-id="braai" class="not-selected-row">
+      <td>Braai Meat Platter<span class="extra-note" style="display:none;">+ Extra Meat Portion (R30)</span></td>
+      <td>R120.00</td>
+      <td><input type="number" class="qty" data-price="120" data-extra="30" value="0" min="0" onchange="updateTotal()" /></td>
+      <td class="item-cost">R0.00</td>
+    </tr>
+    <tr data-id="papwors" class="not-selected-row">
+      <td>Pap and Wors<span class="extra-note" style="display:none;">+ Extra Wors (R15)</span></td>
+      <td>R50.00</td>
+      <td><input type="number" class="qty" data-price="50" data-extra="15" value="0" min="0" onchange="updateTotal()" /></td>
+      <td class="item-cost">R0.00</td>
+    </tr>
+    <tr data-id="chips" class="not-selected-row">
+      <td>Spicy Chips<span class="extra-note" style="display:none;">+ Extra Cheese Sauce (R8)</span></td>
+      <td>R20.00</td>
+      <td><input type="number" class="qty" data-price="20" data-extra="8" value="0" min="0" onchange="updateTotal()" /></td>
+      <td class="item-cost">R0.00</td>
+    </tr>
+    <tr data-id="fish" class="not-selected-row">
+      <td>Fried Fish<span class="extra-note" style="display:none;">+ Extra Lemon Butter Sauce (R5)</span></td>
+      <td>R55.00</td>
+      <td><input type="number" class="qty" data-price="55" data-extra="5" value="0" min="0" onchange="updateTotal()" /></td>
+      <td class="item-cost">R0.00</td>
+    </tr>
+    <tr data-id="atchar" class="not-selected-row">
+      <td>Atchar<span class="extra-note" style="display:none;">+ Extra Portion (R5)</span></td>
+      <td>R10.00</td>
+      <td><input type="number" class="qty" data-price="10" data-extra="5" value="0" min="0" onchange="updateTotal()" /></td>
+      <td class="item-cost">R0.00</td>
+    </tr>
+    <tr>
+      <td colspan="3">15% VAT</td>
+      <td id="vat-amount">R0.00</td>
+    </tr>
+    <tr class="total-row">
+      <td colspan="3"><strong>TOTAL (including VAT)</strong></td>
+      <td id="grand-total"><strong>R0.00</strong></td>
+    </tr>
+  </table>
+
+  <br />
+  <button class="btn-confirm" onclick="confirmOrder()">Confirm Order</button>
+  <button class="btn-clear"   onclick="clearOrder()">Clear Order</button>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p>Contact: <a href="mailto:info@madzendiskitchen.com">info@madzendiskitchen.com</a> | +27 67 762 4794</p>
+  <p>&copy; 2026 Madzendi's Kitchen. All rights reserved.</p>
+</footer>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+
+  // -------------------------------------------------------
+  // LOAD EVERYTHING FROM THE QUERY STRING
+  // Registration data and product selections both arrive here
+  // as query string parameters (appended by registration.html
+  // and, before that, products.html).
+  // -------------------------------------------------------
+  window.onload = function() {
+    var queryParams = new URLSearchParams(window.location.search);
+    var username = queryParams.get("un");
+
+    // If no registration data found, show warning and stop
+    if (!username) {
+      document.getElementById("no-reg-warning").style.display = "block";
+      return;
+    }
+
+    var lname    = queryParams.get("ln");
+    var idnum    = queryParams.get("id");
+    var phone    = queryParams.get("ph");
+    var email    = queryParams.get("em");
+    var addr1    = queryParams.get("a1");
+    var addr2    = queryParams.get("a2");
+    var city     = queryParams.get("ci");
+    var province = queryParams.get("pr");
+    var postal   = queryParams.get("po");
+    var cardname = queryParams.get("cn");
+    var cardtype = queryParams.get("ct");
+    var cardnum  = queryParams.get("cnum");
+    var expmonth = queryParams.get("exm");
+    var expyear  = queryParams.get("exy");
+
+    // Mask ID number: show only first 4 digits, replace rest with *
+    var maskedId = "";
+    if (idnum) {
+      maskedId = idnum.substring(0, 4) + "*********";
+    }
+
+    // Mask card number: show only last 4 digits, replace rest with *
+    var maskedCard = "";
+    if (cardnum) {
+      var cleanCard = cardnum.replace(/\s/g, "");
+      maskedCard = "************" + cleanCard.slice(-4);
+    }
+
+    // Build full shipping address string
+    var fullAddr = addr1 + ", " + addr2 + ", " + city + ", " + province + ", " + postal;
+
+    // Populate the Your Information section
+    document.getElementById("disp-username").innerText = username;
+    document.getElementById("disp-lname").innerText    = lname;
+    document.getElementById("disp-idnum").innerText    = maskedId;
+    document.getElementById("disp-phone").innerText    = phone;
+    document.getElementById("disp-email").innerText    = email;
+    document.getElementById("disp-addr").innerText     = fullAddr;
+
+    // Populate the Payment Details section
+    document.getElementById("disp-cardname").innerText = cardname;
+    document.getElementById("disp-cardtype").innerText = cardtype;
+    document.getElementById("disp-cardnum").innerText  = maskedCard;
+    document.getElementById("disp-expiry").innerText   = expmonth + "/" + expyear;
+
+    // Seed the order table from the products selected on products.html
+    var productsParam = queryParams.get("products");
+    if (productsParam) {
+      applyProductSelections(productsParam);
+    }
+
+    updateTotal();
+  };
+
+
+  // -------------------------------------------------------
+  // APPLY PRODUCT SELECTIONS FROM THE QUERY STRING
+  // productsParam looks like "beef:2:1,kota:1:0" — each entry
+  // is productId:quantity:extraFlag. We find the matching row,
+  // reveal it, set its quantity, and show the extra note if
+  // the extra flag is set.
+  // -------------------------------------------------------
+  function applyProductSelections(productsParam) {
+    var entries = productsParam.split(",");
+
+    for (var i = 0; i < entries.length; i++) {
+      var parts = entries[i].split(":");
+      var productId = parts[0];
+      var qty       = parseInt(parts[1]) || 0;
+      var extraFlag = parts[2] === "1";
+
+      var row = document.querySelector('tr[data-id="' + productId + '"]');
+      if (!row) { continue; }
+
+      // Reveal this row (rows start hidden until a selection matches them)
+      row.classList.remove("not-selected-row");
+
+      var qtyInput = row.querySelector(".qty");
+      qtyInput.value = qty;
+
+      if (extraFlag) {
+        var extraNote = row.querySelector(".extra-note");
+        extraNote.style.display = "inline";
+      }
+    }
+  }
+
+
+  // -------------------------------------------------------
+  // UPDATE ORDER TOTAL when quantities change
+  // Includes the flat extra cost for any row with its extra
+  // note visible (extras are a one-time add-on per line, not
+  // multiplied by quantity).
+  // -------------------------------------------------------
+  function updateTotal() {
+    var rows     = document.querySelectorAll("#order-table tr[data-id]");
+    var subtotal = 0;
+
+    for (var i = 0; i < rows.length; i++) {
+      var row       = rows[i];
+      var qtyInput  = row.querySelector(".qty");
+      var costCell  = row.querySelector(".item-cost");
+      var qty       = parseInt(qtyInput.value) || 0;
+      var price     = parseFloat(qtyInput.getAttribute("data-price"));
+      var extraNote = row.querySelector(".extra-note");
+      var extraCost = 0;
+
+      if (extraNote.style.display === "inline" && qty > 0) {
+        extraCost = parseFloat(qtyInput.getAttribute("data-extra"));
+      }
+
+      var cost = (qty * price) + extraCost;
+      subtotal += cost;
+      costCell.innerText = "R" + cost.toFixed(2);
+    }
+
+    var vat   = subtotal * 0.15;
+    var total = subtotal + vat;
+
+    document.getElementById("vat-amount").innerText  = "R" + vat.toFixed(2);
+    document.getElementById("grand-total").innerHTML = "<strong>R" + total.toFixed(2) + "</strong>";
+
+    return total;
+  }
+
+
+  // -------------------------------------------------------
+  // CONFIRM ORDER
+  // Builds a query string with the fields receipt.html needs
+  // and navigates there, exactly as the brief describes:
+  // "by appending data to a query string when the user clicks
+  // on the Confirm Order button."
+  // -------------------------------------------------------
+  function confirmOrder() {
+    var total = updateTotal();
+
+    if (total === 0) {
+      alert("Please add at least one item to your order.");
+      return;
+    }
+
+    var queryParams = new URLSearchParams(window.location.search);
+
+    var receiptParams = new URLSearchParams();
+    receiptParams.set("un",    queryParams.get("un")    || "Guest");
+    receiptParams.set("ln",    queryParams.get("ln")    || "");
+    receiptParams.set("ph",    queryParams.get("ph")    || "N/A");
+    receiptParams.set("em",    queryParams.get("em")    || "N/A");
+
+    var addr1 = queryParams.get("a1") || "";
+    var addr2 = queryParams.get("a2") || "";
+    var city  = queryParams.get("ci") || "";
+    receiptParams.set("addr", addr1 + ", " + addr2 + ", " + city);
+    receiptParams.set("total", total.toFixed(2));
+
+    window.location.href = "receipt.html?" + receiptParams.toString();
+  }
+
+
+  // -------------------------------------------------------
+  // CLEAR ORDER - reset all quantities to 0 and hide extras
+  // -------------------------------------------------------
+  function clearOrder() {
+    var rows = document.querySelectorAll("#order-table tr[data-id]");
+
+    for (var i = 0; i < rows.length; i++) {
+      var row       = rows[i];
+      var qtyInput  = row.querySelector(".qty");
+      var costCell  = row.querySelector(".item-cost");
+      var extraNote = row.querySelector(".extra-note");
+
+      qtyInput.value = 0;
+      costCell.innerText = "R0.00";
+      extraNote.style.display = "none";
+      row.classList.add("not-selected-row");
+    }
+
+    document.getElementById("vat-amount").innerText  = "R0.00";
+    document.getElementById("grand-total").innerHTML = "<strong>R0.00</strong>";
+  }
+
+</script>
+
+</body>
+</html>

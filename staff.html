@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Staff - Madzendi's Kitchen</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ===== HEADER + NAVIGATION ===== -->
+<header>
+  <nav class="navbar">
+    <span class="logo">Madzendi's Kitchen</span>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="registration.html">Register</a></li>
+      <li><a href="staff.html">Staff</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="order.html">Order</a></li>
+      <li><a href="play.html">Play</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ===== PAGE HEADING ===== -->
+<h1 class="page-heading">Meet Our Team</h1>
+
+<!-- ===== STAFF DIRECTORY ===== -->
+<div class="staff-section">
+  <h2>Staff Directory</h2>
+
+  <!-- Team photo -->
+  <figure>
+    <img src="images/staff2.jpg" alt="Madzendi's Kitchen team members" />
+    <figcaption>Part of the Madzendi's Kitchen team, hard at work.</figcaption>
+  </figure>
+
+  <p>Our team is passionate about food and the community we serve.</p>
+
+  <!-- Table body gets filled in by JavaScript once staff.json has loaded -->
+  <table class="staff-table" id="staff-table">
+    <tr>
+      <th>Staff #</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Job Description</th>
+      <th>Work Phone</th>
+      <th>Work Email</th>
+    </tr>
+    <!-- Rows are appended here by loadStaff() -->
+  </table>
+
+  <!-- Shown only if the fetch fails (e.g. page opened without a local server) -->
+  <div id="staff-error">
+    Could not load the staff directory. Make sure staff.html is being served
+    from a local server (e.g. VS Code Live Server) and that staff.json is in
+    the same folder.
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p>Contact: <a href="mailto:info@madzendiskitchen.com">info@madzendiskitchen.com</a> | +27 67 762 4794</p>
+  <p>&copy; 2026 Madzendi's Kitchen. All rights reserved.</p>
+</footer>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+
+  // -------------------------------------------------------
+  // LOAD STAFF DIRECTORY FROM staff.json
+  // Uses fetch() to read the external JSON file, then builds
+  // one table row per staff member from the parsed data.
+  // -------------------------------------------------------
+  function loadStaff() {
+    fetch("staff.json")
+      .then(function (response) {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then(function (staffMembers) {
+        buildStaffTable(staffMembers);
+      })
+      .catch(function (error) {
+        console.error("Error loading staff.json:", error);
+        document.getElementById("staff-error").style.display = "block";
+      });
+  }
+
+  // -------------------------------------------------------
+  // BUILD THE STAFF TABLE
+  // Loops through the array of staff objects and creates a
+  // table row for each one, then appends it to the table.
+  // -------------------------------------------------------
+  function buildStaffTable(staffMembers) {
+    var table = document.getElementById("staff-table");
+
+    for (var i = 0; i < staffMembers.length; i++) {
+      var staff = staffMembers[i];
+
+      var row = document.createElement("tr");
+
+      row.innerHTML =
+        "<td>" + staff.staffNumber + "</td>" +
+        "<td>" + staff.firstName + "</td>" +
+        "<td>" + staff.lastName + "</td>" +
+        "<td>" + staff.jobDescription + "</td>" +
+        "<td>" + staff.workPhone + "</td>" +
+        "<td>" + staff.workEmail + "</td>";
+
+      table.appendChild(row);
+    }
+  }
+
+  window.onload = loadStaff;
+
+</script>
+
+</body>
+</html>
